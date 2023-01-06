@@ -1,8 +1,11 @@
 install.packages("ggpubr")
 library(ggplot2, Hmisc); library(ggpubr)
 
-travelData <- read.csv("C:/Users/jhews/OneDrive/Documents/Data Analytics/R/Assignment 1/AssignmentDataSet.csv", header = TRUE)
+travelData <- read.csv("C:/Users/jhews/OneDrive/Documents/Data Analytics/Portfolio/Project 3 - Travel Company/PortTravel Customer Records Dataset.csv", header = TRUE)
 travelData
+
+names(travelData)
+head(travelData, n=10)
 
 ##DATA CLEANING##
 
@@ -113,7 +116,7 @@ tripsNumber + geom_histogram(binwidth = 1, colour = "black", fill = "white") +
   ggtitle("Average Number of Trips in a Year, Including Central Tendency") 
 
 #Boxplot Showing Dispersion (Range, IQR, 1st Quartile, 3rd Quartile, Median)
-boxplot(travelData$NumberOfTrips, ylab= "Average Number of Trips in a Year", main = "Boxplot Showing the Dispersion of Yearly Trips (Substantial Outliers Removed)")
+boxplot(travelData$NumberOfTrips, ylab= "Average Number of Trips in a Year", main = "Boxplot Showing the Dispersion of Yearly Trips")
 
 # Bar Chart - Number of Trips vs Occupation
 occupationNumber <- ggplot(travelData, aes(Occupation, NumberOfTrips), na.rm = TRUE)
@@ -654,8 +657,11 @@ mean(vif(bothWaysModel))
 #QUESTION 5: PREDICTION#
 
 #Insert Test Scenarios into the Model to find NumberOfTrips
-testScenarios <- read.csv("C:/Users/jhews/OneDrive/Documents/Data Analytics/R/Assignment 1/Assignment1 Dataset - Prediction.csv", header = TRUE)
+testScenarios <- read.csv("C:/Users/jhews/OneDrive/Documents/Data Analytics/Portfolio/Project 3 - Travel Company/Additional Customer Dataset.csv", header = TRUE)
 testScenarios
+
+head(testScenarios, n=5)
+
 #Predict NumberOfTrips via predict() function
 predict(bothWaysModel, newdata = testScenarios)
 
